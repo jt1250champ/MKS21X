@@ -1,0 +1,7 @@
+git status - tells you what files have been changed since the last commit, what files are not being tracked
+git add name.ext - adds/tracks this single file name.ext
+git add -A - adds all files that are not currently being tracked
+git commit -m "message" - commits the files that you have added with a comment in the message
+git clone <link from github> - clones from Github to local
+git push - moves from local to Github
+git pull - moves from Github to local

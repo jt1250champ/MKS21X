@@ -26,7 +26,7 @@ public class Barcode implements Comparable<Barcode>{
     }
  
     public String toString(){
-	return toCode(_zip + _checkDigit);
+	return _zip + _checkDigit + "   " + toCode(_zip + _checkDigit);
     }
     
     public int compareTo(Barcode other){
@@ -35,34 +35,41 @@ public class Barcode implements Comparable<Barcode>{
 
     public static String toCode(String zip) {
 	String barcode = "";
-	String numbers = _zip + _checkDigit;
+	String code = _zip + _checkDigit;
 	for(int i = 0; i < 6; i++){
-	    if(numbers.charAt(i)=='1'){
-		barcode += ":::||" ;
-	    }else if(numbers.charAt(i)=='2'){
-		barcode += "::|:|" ;
-	    }else if(numbers.charAt(i)=='3'){
-		barcode += "::||:" ;
-	    }else if(numbers.charAt(i)=='4'){
-		barcode += ":|::|" ;
-	    }else if(numbers.charAt(i)=='5'){
-		barcode += ":|:|:" ;
-	    }else if(numbers.charAt(i)=='6'){
-		barcode += ":||::" ;
-	    }else if(numbers.charAt(i)=='7'){
-		barcode += "|:::|" ;
-	    }else if(numbers.charAt(i)=='8'){
-		barcode += "|::|:" ;
-	    }else if(numbers.charAt(i)=='9'){
-		barcode += "|:|::" ;
-	    }else if(numbers.charAt(i)=='0'){
-		barcode += "||:::" ;
+	    switch(code.charAt(i)) {
+	    case '0': barcode += "||:::";
+		break;
+	    case '1': barcode += ":::||";
+		break;
+	    case '2': barcode += "::|:|";
+		break;
+	    case '3': barcode += "::||:";
+		break;
+	    case '4': barcode += ":|::|";
+		break;
+	    case '5': barcode += ":|:|:";
+		break;
+	    case '6': barcode += ":||::";
+		break;
+	    case '7': barcode += "|:::|";
+		break;
+	    case '8': barcode += "|::|:";
+		break;
+	    case '9': barcode += "|:|::";
+		break;
 	    }
 	}
-	return numbers + "  |" + barcode + "|";
+	return "|" + barcode + "|";
     }
 
     public static String toZip(String code) {
+	if(code.length() != 32) {
+	    throw new IllegalArgumentException();
+	}
+	if(code.charAt(0) != '|' || code.charAt(31) != '|') {
+	    throw new IllegalArgumentException();
+	}
 	
     }
 }

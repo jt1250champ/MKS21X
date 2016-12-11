@@ -1,57 +1,42 @@
 public class Barcode implements Comparable<Barcode>{
-// instance variables
-   private String _zip;
-   private int _checkDigit;
-    private String total;
 
-// constructors
-//precondtion: _zip.length() = 5 and zip contains only digits.
-//postcondition: throws a runtime exception zip is not the correct length
-//               or zip contains a non digit
-//               _zip and _checkDigit are initialized.
-  public Barcode(String zip) {
-      if(zip.length() == 5) {
-	  this._zip = zip;
-      } else {
-	  throw new IllegalArgumentException();
-      }
+    private String _zip;
+    private int _checkDigit;
 
-      try {
-	  _checkDigit = checkDigit();
-      } catch(NumberFormatException e) {
-	  throw new IllegalArgumentException();
-      }
+    public Barcode(String zip) {
+	if(zip.length() == 5) {
+	    this._zip = zip;
+	} else {
+	    throw new IllegalArgumentException();
+	}
 
-      total = _zip + _checkDigit;
-  }
+	try {
+	    _checkDigit = checkSum(zip);
+	} catch(NumberFormatException e) {
+	    throw new IllegalArgumentException();
+	}
+    }
 
-    private int checkDigit() {
+    private static int checkSum(String zip){
 	int sum = 0;
 	for(int i = 0; i < 5; i++) {
-	    sum += Integer.parseInt(""+_zip.charAt(i));
+	    sum += Integer.parseInt(zip.charAt(i));
 	}
 	return sum%10;
     }
-
-
-// postcondition: Creates a copy of a bar code.
-   public Barcode clone(){
-       Barcode a = new Barcode(this._zip);
-       return a;
-   }
-
-
-// postcondition: computes and returns the check sum for _zip
-    private int checkSum(){
-	return 0;
+ 
+    public String toString(){
+	return toCode(_zip + _checkDigit);
+    }
+    
+    public int compareTo(Barcode other){
+	return (this.total).compareTo(other.total);
     }
 
-//postcondition: format zip + check digit + Barcode 
-//ex. "084518  |||:::|::|::|::|:|:|::::|||::|:|"      
-    public String toString(){
+    public static String toCode(String zip) {
 	String barcode = "";
 	String numbers = _zip + _checkDigit;
-		for(int i = 0; i < 6; i++){
+	for(int i = 0; i < 6; i++){
 	    if(numbers.charAt(i)=='1'){
 		barcode += ":::||" ;
 	    }else if(numbers.charAt(i)=='2'){
@@ -75,13 +60,9 @@ public class Barcode implements Comparable<Barcode>{
 	    }
 	}
 	return numbers + "  |" + barcode + "|";
+    }
+
+    public static String toZip(String code) {
 	
     }
-
-
-// postcondition: compares the zip + checkdigit, in numerical order. 
-    public int compareTo(Barcode other){
-	return (this.total).compareTo(other.total);
-    }
-    
 }

@@ -1,3 +1,4 @@
+import java.util.*;
 public class Sorts{
   /**EDIT THIS METHOD TO MATCH YOUR NAME 
   */
@@ -25,17 +26,19 @@ public class Sorts{
       }
   }
 
-    public static void main(String[] args) {
-	int[] data = new int[2];
-	data[0] = 64;
-	data[1] = 10;
-        for(int i = 0; i < data.length; i++) {
-	    System.out.println(data[i]);
-	}
-	selectionSort(data);
-	for(int i = 0; i < data.length; i++) {
-	    System.out.println(data[i]);
-	}
-    }
+  public static void main(String[] args) {
+    int[] a = {};
+    selectionSort(a);
+    System.out.println(Arrays.toString(a));
+    int[] b = {5};
+    selectionSort(b);
+    System.out.println(Arrays.toString(b));
+    int[] c = {8,9,5,7,1,2,3,6,0,4};
+    selectionSort(c);
+    System.out.println(Arrays.toString(c));
+    int[] d = {21,23,49,21,43,5932,20,89};
+    selectionSort(d);
+    System.out.println(Arrays.toString(d));
+  }
 
 }

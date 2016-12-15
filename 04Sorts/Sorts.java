@@ -1,7 +1,6 @@
 import java.util.*;
 public class Sorts{
-  /**EDIT THIS METHOD TO MATCH YOUR NAME 
-  */
+
   public static String name(){
     return "10.Tao.JT"; 
   }
@@ -25,6 +24,32 @@ public class Sorts{
 	  data[place] = current;	  
       }
   }
+
+    public static void insertionSort(int[] data) {
+	for(int i = 0; i < data.length - 1; i++) {
+	    int j = i + 1;
+	    int current = data[j];
+	    for(int place = i; place >= 0; place--) {
+		if(data[j] < data[place]) {
+		    int relmin = place;
+		    data[place + 1] = data[place];
+		}
+	    }
+	    data[relmin] = current;
+	}
+    }
+
+    public static void bubbleSort(int[] data) {
+	for(int i = data.length - 1; i >= 0; i--) {
+	    for(boolean done = false, int j = 0; j < data.length && !done; j++) {
+		int current,temp;
+		if(data[i] > data[i+1]) {
+		    
+		}
+	    }
+	}
+
+    }
 
   public static void main(String[] args) {
     int[] a = {};

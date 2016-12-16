@@ -5,10 +5,6 @@ public class Sorts{
     return "10.Tao.JT"; 
   }
 
-  /**Selection sort of an int array. 
-  *Upon completion, the elements of the array will be in increasing order.
-  *@param data  the elements to be sorted.
-  */
   public static void selectionSort(int[] data){
       for(int i = 0; i < data.length; i++) {
 	  int minnie = data[i];
@@ -29,9 +25,10 @@ public class Sorts{
 	for(int i = 0; i < data.length - 1; i++) {
 	    int j = i + 1;
 	    int current = data[j];
+	    int relmin = j;
 	    for(int place = i; place >= 0; place--) {
-		if(data[j] < data[place]) {
-		    int relmin = place;
+		if(current < data[place]) {
+		    relmin = place;
 		    data[place + 1] = data[place];
 		}
 	    }
@@ -40,29 +37,39 @@ public class Sorts{
     }
 
     public static void bubbleSort(int[] data) {
-	for(int i = data.length - 1; i >= 0; i--) {
-	    for(boolean done = false, int j = 0; j < data.length && !done; j++) {
-		int current,temp;
-		if(data[i] > data[i+1]) {
-		    
+	boolean done = false;
+	for (int times = 0; times < data.length && !done ; times++){
+	    int swaps = 0;
+	    for (int current = 0; current<data.length-times-1; current++){
+		int nextTo=current+1;
+		int tempC = data[current];
+		if (tempC>data[nextTo]){
+		    data[current]=data[nextTo];
+		    data[nextTo]=tempC;
+		    swaps++;
 		}
+	    }
+	    if (swaps == 0){
+		done = true;
 	    }
 	}
 
+    
     }
+
 
   public static void main(String[] args) {
     int[] a = {};
-    selectionSort(a);
-    System.out.println(Arrays.toString(a));
+    bubbleSort(a);
+    //System.out.println(Arrays.toString(a));
     int[] b = {5};
-    selectionSort(b);
-    System.out.println(Arrays.toString(b));
-    int[] c = {8,9,5,7,1,2,3,6,0,4};
-    selectionSort(c);
+    bubbleSort(b);
+    //System.out.println(Arrays.toString(b));
+    int[] c = {8,5,9};
+    bubbleSort(c);
     System.out.println(Arrays.toString(c));
-    int[] d = {21,23,49,21,43,5932,20,89};
-    selectionSort(d);
+    int[] d = {21,23,49,21,43,5932};
+    bubbleSort(d);
     System.out.println(Arrays.toString(d));
   }
 

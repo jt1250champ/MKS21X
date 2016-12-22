@@ -1,15 +1,16 @@
 import javax.swing.*;
 import java.awt.*;
-public class Window extends JFrame {
- private Container pane;
+import java.awt.event.*;
 
- private JButton b;
- private JLabel l;
- private JTextField t;
- private JCheckBox c;
+public class Temp  extends JFrame implements ActionListener{
+    private Container pane;
+
+    private JButton toF,toC;
+    private JLabel l;
+    private JTextField t;
+    private JCheckBox c;
  
-  //CONSTRUCTOR SETS EVERYTHING UP
-  public Window() {
+  public Temp() {
      this.setTitle("Temperature");
      this.setSize(600,400);
      this.setLocation(100,100);
@@ -20,17 +21,41 @@ public class Window extends JFrame {
     
      t = new JTextField(12);
      toF = new JButton("to F");
+     toF.addActionListener(this);
+     toF.setActionCommand("f");
      toC = new JButton("to C");
-     l = new JLabel(,null,JLabel.CENTER);
+     toC.addActionListener(this);
+     toC.setActionCommand("c");
+     l = new JLabel("Temperature");
      
+     pane.add(toF);
+     pane.add(toC);
      pane.add(l);
-     pane.add(b);
      pane.add(t);
- }
+  }
+    public void actionPerformed(ActionEvent e) {
+	String event = e.getActionCommand();
+	try{
+	if(event.equals("f")) {
+	    double s = Double.parseDouble(t.getText());
+	    double result = s*1.8+32;
+	    l.setText("" + result);
+	    
+	}
+	if(event.equals("c")) {
+	    double s = Double.parseDouble(t.getText());
+	    double result = (s-32)/1.8;
+	    l.setText("" + result);
+	}
+	}catch(NumberFormatException a) {
+	    l.setText("Please put in a number");
+	}
+    }
+     
 
-  //MAIN JUST INSTANTIATES + MAKE VISIBLE
   public static void main(String[] args) {
-     Window g = new Window();
+     Temp g = new Temp();
      g.setVisible(true);
   }
+
 }

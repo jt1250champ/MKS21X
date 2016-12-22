@@ -38,14 +38,13 @@ public class Sorts{
 
     public static void bubbleSort(int[] data) {
 	boolean done = false;
-	for (int times = 0; times < data.length && !done ; times++){
+	for (int times = 0; times < data.length && !done ; times++) {
 	    int swaps = 0;
-	    for (int current = 0; current<data.length-times-1; current++){
-		int nextTo=current+1;
-		int tempC = data[current];
-		if (tempC>data[nextTo]){
-		    data[current]=data[nextTo];
-		    data[nextTo]=tempC;
+	    for (int current = 0; current < data.length-times-1; current++) {
+		if (data[current] > data[current + 1]){
+		    int temp = data[current + 1];
+		    data[current + 1] = data[current];
+		    data[current] = temp;
 		    swaps++;
 		}
 	    }
@@ -61,10 +60,10 @@ public class Sorts{
   public static void main(String[] args) {
     int[] a = {};
     bubbleSort(a);
-    //System.out.println(Arrays.toString(a));
+    System.out.println(Arrays.toString(a));
     int[] b = {5};
     bubbleSort(b);
-    //System.out.println(Arrays.toString(b));
+    System.out.println(Arrays.toString(b));
     int[] c = {8,5,9};
     bubbleSort(c);
     System.out.println(Arrays.toString(c));
